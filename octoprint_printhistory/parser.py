@@ -4,7 +4,7 @@ import os
 import json
 import logging
 import unittest
-import StringIO
+import io
 import ConfigParser
 
 VERSION_REGEX = re.compile(r"(\d+)?\.(\d+)?\.?(\*|\d+)")
@@ -92,7 +92,7 @@ class CuraParser(BaseParser):
         settings = settings["global_quality"].replace("\\\\n", "\n")
         config = ConfigParser.RawConfigParser(allow_no_value=True)
         try:
-            config.readfp(StringIO.StringIO(settings))
+            config.readfp(io.StringIO(settings))
         except ConfigParser.MissingSectionHeaderError:
             # TODO add a log message
             return {}
