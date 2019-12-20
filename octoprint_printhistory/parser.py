@@ -89,7 +89,7 @@ class CuraParser(BaseParser):
         settings = "".join(settings)
         settings = json.loads(settings)
         # Cura >= 3.1 prints also a section extruder_quality
-        settings = settings["global_quality"].replace("\\\\n", "\n")
+        settings = settings["global_quality"].replace("\\n", "\n")
         config = ConfigParser.RawConfigParser(allow_no_value=True)
         try:
             config.readfp(io.StringIO(settings))
